@@ -22,6 +22,16 @@ describe('allergicTo', () => {
     expect(allergies.allergicTo('shellfish')).toBeTruthy()
     expect(allergies.allergicTo('strawberries')).toBeFalsy()
   })
+
+  it('allergic to chocolate, eggs, and peanuts', () => {
+    const allergies = new Allergies(35)
+
+    expect(allergies.allergicTo('eggs')).toBeTruthy()
+    expect(allergies.allergicTo('chocolate',)).toBeTruthy()
+    expect(allergies.allergicTo('peanuts',)).toBeTruthy()
+    expect(allergies.allergicTo('strawberries')).toBeFalsy()
+    expect(allergies.allergicTo('tomatoes')).toBeFalsy()
+  })
 })
 
 describe.skip('list', () => {
