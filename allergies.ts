@@ -1,13 +1,15 @@
 export class Allergies {
-  constructor(allergenIndex: unknown) {
+  allergenIndex: number
+  constructor(allergenIndex: number) {
+    this.allergenIndex = allergenIndex;
+  }
+
+  public list(): string[] {
     throw new Error('Remove this statement and implement this function')
   }
 
-  public list(): unknown {
-    throw new Error('Remove this statement and implement this function')
-  }
+  public allergicTo(allergen: string): boolean {
+    if (this.allergenIndex === 0) return false;
 
-  public allergicTo(allergen: unknown): unknown {
-    throw new Error('Remove this statement and implement this function')
   }
 }
