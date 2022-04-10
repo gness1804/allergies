@@ -34,7 +34,7 @@ describe('allergicTo', () => {
   })
 })
 
-describe.skip('list', () => {
+describe('list', () => {
   it('no allergies at all', () => {
     const allergies = new Allergies(0)
     const expected: string[] = []
