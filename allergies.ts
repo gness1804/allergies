@@ -35,7 +35,7 @@ export class Allergies {
           // the sum equals the allergenIndex; we have our solution.
         } else if (this.findSum(solutionsList) + bottomElement[1] === this.allergenIndex) {
           solutionsList.push(bottomElement);
-          return solutionsList.map(([allergen, score]) => allergen);
+          return this.sortAllergies(solutionsList).map(([allergen, score]) => allergen);
         } else if (topElement[1] + bottomElement[1] < this.allergenIndex) {
           solutionsList.push(bottomElement);
         }
@@ -48,13 +48,28 @@ export class Allergies {
     return arr.reduce((acc, curr) => { return acc + curr[1] }, 0)
   }
 
+  private sortAllergies(arr: [string, number][]): [string, number][] {
+    return arr.sort((a, b) => {
+      const aVal = a[1];
+      const bVal = b[1];
+      if (aVal < bVal) {
+        return -1;
+      }
+      if (aVal > bVal) {
+        return 1;
+      }
+      // a must be equal to b
+      return 0;
+    })
+  }
+
   public allergicTo(allergen: string): boolean {
     if (this.allergenIndex === 0) return false;
     // remove all scores that are greater than the allergen index
     const scoresInRange = new Map([...allergies].filter(([allergy, score]) => score <= this.allergenIndex))
     const scoresArr = [...scoresInRange];
-    if (scoresArr.length === 1 ) {
-      return !!scoresArr.find(elem => elem[1] === this.allergenIndex )
+    if (scoresArr.length === 1) {
+      return !!scoresArr.find(elem => elem[1] === this.allergenIndex)
     }
     for (let i = scoresArr.length - 1; i >= 0; i--) {
       const topElement = scoresArr[i];
