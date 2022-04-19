@@ -14,7 +14,7 @@ export class Allergies {
   private getAllergens(): string[] {
     let result: string[] = [];
     const binaryIndex = this.allergenIndex.toString(2);
-    const paddedIndex = binaryIndex.padStart(8, '0')
+    const paddedIndex = binaryIndex.padStart(8, '0').slice(-8)
     paddedIndex.split('').forEach((val, i) => {
       if (parseInt(val)) {
         result.push(allergies[i]);
